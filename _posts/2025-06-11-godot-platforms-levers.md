@@ -1,12 +1,58 @@
 ---
 layout: post
-title: Introducing Reverie - A ridiculously elegant Jekyll theme
-categories: [Miscellaneous, Jekyll]
+title: Pressure plates, and switches/levers - how to create them in Godot?
+categories: [Godot, Gamedev, Coding, Programming, 2D]
 ---
 
-[Reverie](https://github.com/amitmerchant1990/reverie) is a [Jekyll](https://jekyllrb.com/)-powered theme which is simple and opinionated. It's actually a fork of [jekyll-now](https://github.com/barryclark/jekyll-now) with some additional features and personal touches which I've implemented to suit my needs for my blog.
+Since pressure platforms and levers can be used as base for many interactions or even complex puzzles so lets go you can go about creating some!
+I'll be using my top-down 2D game for presentation of all concepts but they can be fully translated to different perspectives, 3D or even different engines.
+I'll also take it for granted you have some kind of CharacterBody that you can move around the scene (if not - please learn how to create one first).
 
-This is a plug-and-play Jekyll theme which you can use on GitHub Pages without even setting up a local environment.
+## Area2D
+
+Our core will Area2D but first let's create some sprites for pressure plate being pressed/not pressed and place them into our project. Then let's create new node of type Area2D. Areas are nodes that can detect whenever something moves inside and out of them so it's perfect match for detecting when player or whatever else moves onto the platform.
+
+Now lets add our sprites on the area and hide "pressed" sprite by making its visible = false.
+Now Area2D itself doesn't define the the shape of our "press region" so we'll need to add another node of CollisionShape2D that tells us what kind of shape of area are we dealing with.
+Having all of these elements in place it's time to make some small snippet of code.
+
+We'll start with adding a new script and call it pressure plate extending Area2D. If we would look into Area2D documentation we would see that it has several signals informing us about when something enters or exit. I want bodies to be able to interact so we will use body_entered(body) and body_exit(body) but you can make it work with areas too if that's your need.
+
+```gdscript
+extends Area2D
+
+signal on_triggered
+signal on_released
+
+var is_pushed = false
+
+func _ready():
+	body_entered.connect(on_body_entered)
+	body_exited.connect(on_body_exited)
+
+func on_body_entered(_body):
+	if is_pushed == true:
+		return
+	
+	is_pushed = true
+	on_triggered.emit()
+
+func on_body_exited(_body):
+	if is_pushed == false or has_overlapping_bodies():
+		return
+
+	is_pushed = false
+    on_released.emit()
+
+
+
+```
+
+
+Since we know we need to react on both entering and exiting we'll write functions to handle both situations.
+
+
+
 
 ![](/images/reverie-demo.png)
 
