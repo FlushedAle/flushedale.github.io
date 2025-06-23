@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pressure plates, and switches/levers - how to create them in Godot?
+title: /[Godot Tutorial/] Pressure plates, switches, levers and buttons.
 categories: [Godot, Gamedev, Coding, Programming, 2D]
 ---
 
