@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [Godot Tutorial] Pressure plates, switches, levers and buttons.
+title: '[Godot Tutorial] Pressure plates, switches, levers and buttons.'
 categories: [Godot, Gamedev, Coding, Programming, 2D]
 ---
 
