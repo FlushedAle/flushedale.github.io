@@ -4,19 +4,37 @@ title: '[Godot Tutorial] Pressure plates, switches, levers and buttons.'
 categories: [Godot, Gamedev, Coding, Programming, 2D]
 ---
 
-Since pressure platforms and levers can be used as base for many interactions or even complex puzzles so lets go you can go about creating some!
-I'll be using my top-down 2D game for presentation of all concepts but they can be fully translated to different perspectives, 3D or even different engines.
-I'll also take it for granted you have some kind of CharacterBody that you can move around the scene (if not - please learn how to create one first).
+[comment]: <> (My goals for people to learn)
 
-## Area2D
+## Hi! 
 
-Our core will Area2D but first let's create some sprites for pressure plate being pressed/not pressed and place them into our project. Then let's create new node of type Area2D. Areas are nodes that can detect whenever something moves inside and out of them so it's perfect match for detecting when player or whatever else moves onto the platform.
+In this tutorial we'll try to tackle the fundamental interactions to give you a taste of how to make stuff interact with player in easiest way possible while keeping things to look good.
 
-Now lets add our sprites on the area and hide "pressed" sprite by making its visible = false.
-Now Area2D itself doesn't define the the shape of our "press region" so we'll need to add another node of CollisionShape2D that tells us what kind of shape of area are we dealing with.
-Having all of these elements in place it's time to make some small snippet of code.
+### You'll learn how to:
+- Create gameplay events when player or objects step into them (we'll use pressure plates as example)
+- Make interactive switches and buttons (objects with state)
+- Give that little bit of polish to make thing looks good while simple
+- Train reading documentation
 
-We'll start with adding a new script and call it pressure plate extending Area2D. If we would look into Area2D documentation we would see that it has several signals informing us about when something enters or exit. I want bodies to be able to interact so we will use body_entered(body) and body_exit(body) but you can make it work with areas too if that's your need.
+### My assumptions are:
+- You have a character that can walk based on CharacterBody2D node.
+
+
+## Pressure Plate
+
+I like when I can see what's going on so we'll start by creating sprites for pressed and unpressed platform.
+
+Feel free to use mine if you're not into creating sprites for this tutorial.
+
+[sprites here]
+
+Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
+
+When it comes to just detecting presence the standard procedure is to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names in Unity it's called in trigger and in Godot they're called Areas.
+
+That's why we're going to create Area2D as our root node in the scene, this is also the node that we will attach script to later on. First though, let's add our sprites as children of the Area2D node which we'll rename to 'Platform' and set sprite reflecting pressed platform to not visible. Before we'll jump into coding we'll need to do one more node addition. Since godot seperates idea of Area and it's shape we need to add CollisionShape2D and create the shape that matches our visible platform. Last addition - let's set our area to be 'monitoring' but not ;'monitorable' as well as set layers of mask to ones of our player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
+
+
 
 ```gdscript
 extends Area2D
