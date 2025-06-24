@@ -10,6 +10,8 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 
 In this tutorial we'll try to tackle the fundamental interactions to give you a taste of how to make stuff interact with player in easiest way possible while keeping things to look good.
 
+---
+
 ### You'll learn how to:
 - Create gameplay events when player or objects step into them (we'll use pressure plates as example)
 - Make interactive switches and buttons (objects with state)
@@ -19,6 +21,7 @@ In this tutorial we'll try to tackle the fundamental interactions to give you a 
 ### My assumptions are:
 - You have a character that can walk based on CharacterBody2D node.
 
+---
 
 ## Pressure Plate
 
@@ -26,8 +29,8 @@ I like when I can see what's going on so we'll start by creating sprites for pre
 
 Feel free to use mine if you're not into creating sprites for this tutorial.
 
-![](/tutorials/tutorial_platforms/images/platform_pressed.png){: width="250" }
-![](/tutorials/tutorial_play/images/platform_unpressed.png){: width="250" }
+![](/tutorials/tutorial_platforms/images/platform_pressed.png)
+![](/tutorials/tutorial_play/images/platform_unpressed.png)
 
 Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
 
