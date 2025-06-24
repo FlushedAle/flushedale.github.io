@@ -27,18 +27,17 @@ In this tutorial we'll try to tackle the fundamental interactions to give you a 
 
 I like when I can see what's going on so we'll start by creating sprites for pressed and unpressed platform.
 
-Feel free to use mine if you're not into creating sprites for this tutorial.
-
-<div class = "row">
-	<div class="column">
-		<img src= "../images/tutorials/tutorial_platforms/platform_pressed.png" style ="image-rendering: pixelated;width:50%;height:auto;" >
+Feel free to use mine if you're not into creating sprites for this tutorial:
+<div style ="display:flex">
+	<div style="flex:33.33%; padding: 5px;">
+		<img src= "../images/tutorials/tutorial_platforms/platform_pressed.png" style ="image-rendering: pixelated;width:100%;" >
 	</div>
-	<div class="column">
-		<img src= "../images/tutorials/tutorial_platforms/platform_unpressed.png" style ="image-rendering: pixelated;width:50%;height:auto;">
+	<div style="flex:33.33%; padding: 5px;">
+		<img src= "../images/tutorials/tutorial_platforms/platform_unpressed.png" style ="image-rendering: pixelated;width:100%;">
 	</div>
 </div>
-![](/images/tutorials/tutorial_platforms/platform_pressed.png){: width="250" }
-![](/images/tutorials/tutorial_platforms/platform_unpressed.png){: width="250" }
+
+
 
 Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
 
