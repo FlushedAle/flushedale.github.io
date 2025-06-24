@@ -29,8 +29,14 @@ I like when I can see what's going on so we'll start by creating sprites for pre
 
 Feel free to use mine if you're not into creating sprites for this tutorial.
 
-<img src= "../images/tutorials/tutorial_platforms/platform_pressed.png">
-
+<div class = "row">
+	<div class="column">
+		<img src= "../images/tutorials/tutorial_platforms/platform_pressed.png" style ="image-rendering: pixelated;width:50%;height:auto;" >
+	</div>
+	<div class="column">
+		<img src= "../images/tutorials/tutorial_platforms/platform_unpressed.png" style ="image-rendering: pixelated;width:50%;height:auto;">
+	</div>
+</div>
 ![](/images/tutorials/tutorial_platforms/platform_pressed.png){: width="250" }
 ![](/images/tutorials/tutorial_platforms/platform_unpressed.png){: width="250" }
 
