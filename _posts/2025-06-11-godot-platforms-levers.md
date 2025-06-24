@@ -26,7 +26,8 @@ I like when I can see what's going on so we'll start by creating sprites for pre
 
 Feel free to use mine if you're not into creating sprites for this tutorial.
 
-[sprites here]
+![](/images/platform_pressed.png)
+![](/images/platform_unpressed.png)
 
 Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
 
