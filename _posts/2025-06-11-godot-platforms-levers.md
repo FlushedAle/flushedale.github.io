@@ -6,24 +6,24 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 
 [comment]: <> (My goals for people to learn)
 
-##1. Hi! 
+## 1. Hi! 
 
-In this tutorial we'll tackle the fundamental interactions to give you basic tools
+In this tutor*ial we'll tackle the fundamental interactions to give you basic tools
 
 ---
 
-### You'll learn how to:
+**You'll learn how to:**
 - Create gameplay events when player or objects step into them (we'll use pressure plates as example)
 - Make interactive switches and buttons (objects with state)
 - Give that little bit of polish to make thing looks good while simple
 - Approach problems without resorting to external help (yes, looking at you ChatGPT)
 
-### My assumptions are:
+**My assumptions are:**
 - You have a character that can walk based on CharacterBody2D node.
 
 ---
 
-##1. Pressure Plate
+## 1.1 Pressure Plate
 
 I like when I can see what's going on so we'll start by creating sprites for pressed and unpressed platform.
 

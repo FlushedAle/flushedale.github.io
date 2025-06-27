@@ -91,8 +91,6 @@ include: ['_pages']
 paginate: 6
 paginate_path: /page:num/
 
-gems:
-  - jekyll-numbered-headings
 # Exclude these files from your production _site
 exclude:
   - Gemfile
