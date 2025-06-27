@@ -6,7 +6,7 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 
 [comment]: <> (My goals for people to learn)
 
-## Hi! 
+##1. Hi! 
 
 In this tutorial we'll tackle the fundamental interactions to give you basic tools
 
@@ -23,7 +23,7 @@ In this tutorial we'll tackle the fundamental interactions to give you basic too
 
 ---
 
-## Pressure Plate
+##1. Pressure Plate
 
 I like when I can see what's going on so we'll start by creating sprites for pressed and unpressed platform.
 
