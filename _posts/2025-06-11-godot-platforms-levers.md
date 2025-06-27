@@ -30,7 +30,7 @@ Feel free to use mine if you're not into creating sprites for this tutorial:
 
 | ![pressed](/images/tutorials/tutorial_platforms/platform_pressed.png){:height="256px" width="256px"} | ![smiley](/images/tutorials/tutorial_platforms/platform_unpressed.png){:height="256px" width="256px"}|
 |:--:|
-| *Caption for image* |
+| *pressed.png* | *unpressed.png* |
 
 
 Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
