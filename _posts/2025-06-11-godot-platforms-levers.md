@@ -8,7 +8,7 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 
 ## Hi! 
 
-In this tutorial we'll try to tackle the fundamental interactions to give you a taste of how to make stuff interact with player in easiest way possible while keeping things to look good.
+In this tutorial we'll tackle the fundamental interactions to give you basic tools
 
 ---
 
@@ -16,7 +16,7 @@ In this tutorial we'll try to tackle the fundamental interactions to give you a 
 - Create gameplay events when player or objects step into them (we'll use pressure plates as example)
 - Make interactive switches and buttons (objects with state)
 - Give that little bit of polish to make thing looks good while simple
-- Train reading documentation
+- Approach problems without resorting to external help (yes, looking at you ChatGPT)
 
 ### My assumptions are:
 - You have a character that can walk based on CharacterBody2D node.
@@ -38,12 +38,16 @@ Feel free to use mine if you're not into creating sprites for this tutorial:
 </div>
 
 
-
 Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
 
-When it comes to just detecting presence the standard procedure is to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names in Unity it's called in trigger and in Godot they're called Areas.
+When it comes to just detecting presence the standard procedure is to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names in Unity it's called a trigger and in Godot they're called Areas.
 
-That's why we're going to create Area2D as our root node in the scene, this is also the node that we will attach script to later on. First though, let's add our sprites as children of the Area2D node which we'll rename to 'Platform' and set sprite reflecting pressed platform to not visible. Before we'll jump into coding we'll need to do one more node addition. Since godot seperates idea of Area and it's shape we need to add CollisionShape2D and create the shape that matches our visible platform. Last addition - let's set our area to be 'monitoring' but not ;'monitorable' as well as set layers of mask to ones of our player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
+This is exactly what we need so we'll proceed with setting it up as follows:
+1. 
+That's why we're going to create Area2D as our root node in the scene. This is also the node that we will attach script to later on. First though. Let's rename it to 'Platform' or any other fitting name.
+Then, let's add our sprites as children of the Area2D node. Finally - set sprite reflecting pressed platform to not visible (the little eye icon in scene hierarchy).This allows us to see
+
+Before we'll jump into coding we'll need to do one more node addition. Since godot seperates idea of Area and it's shape we need to add CollisionShape2D and create the shape that matches our visible platform. Last addition - let's set our area to be 'monitoring' but not 'monitorable' as well as set layers of mask to ones of our player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
 
 
 
