@@ -20,6 +20,9 @@ html {
   height: 100%;
 }
 
+@scope(.entry)
+{
+
 body {
     counter-reset: h1
 }
@@ -55,7 +58,7 @@ h4:before {
     counter-increment: h4;
     content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". "
 }
-
+}
 
 body {
   background: #fff;
