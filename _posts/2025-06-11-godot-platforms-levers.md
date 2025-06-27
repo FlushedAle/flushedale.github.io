@@ -6,7 +6,7 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 
 [comment]: <> (My goals for people to learn)
 
-* TOC
+1. TOC
 {:toc}
 
 ## 1. Hi! 
