@@ -25,14 +25,14 @@ In this tutorial we'll tackle the fundamental interactions to give you basic too
 I like when I can see what's going on so we'll start by creating sprites for pressed and unpressed platform.
 
 Feel free to use mine if you're not into creating sprites for this tutorial:
-|<div style ="display:flex">
+<div style ="display:flex">
 	<div style="flex:33.33%; padding: 5px;">
 		<img src= "../images/tutorials/tutorial_platforms/platform_pressed.png" style ="image-rendering: pixelated;width:100%;" >
 	</div>
 	<div style="flex:33.33%; padding: 5px;">
 		<img src= "../images/tutorials/tutorial_platforms/platform_unpressed.png" style ="image-rendering: pixelated;width:100%;">
 	</div>
-</div> |
+</div>
 |:--:|
 |*Caption for image*|
 
