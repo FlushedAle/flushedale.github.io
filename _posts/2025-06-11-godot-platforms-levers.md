@@ -6,9 +6,12 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 
 [comment]: <> (My goals for people to learn)
 
+* TOC
+{:toc}
+
 ## 1. Hi! 
 
-In this tutor*ial we'll tackle the fundamental interactions to give you basic tools
+In this tutorial we'll tackle the fundamental interactions to give you basic tools
 
 ---
 
