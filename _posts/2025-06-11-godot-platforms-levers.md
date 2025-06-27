@@ -33,8 +33,7 @@ Feel free to use mine if you're not into creating sprites for this tutorial:
 		<img src= "../images/tutorials/tutorial_platforms/platform_unpressed.png" style ="image-rendering: pixelated;width:100%;">
 	</div>
 </div>
-|:--:|
-|*Caption for image*|
+| *Caption for image*|
 
 
 Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
