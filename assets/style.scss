@@ -14,7 +14,7 @@
 /**************/
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Fira Mono');
+@import url('https://fonts.googleapis.com/css?family=Fira Mono')
 
 html {
   font-size: 100%;
@@ -24,7 +24,7 @@ html {
 
 body {
   background: #fff;
-  font-family: 'Fira Mono', -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 'Fira Mono', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: #404040;
   line-height: 1.7;
   font-weight: 400;
@@ -40,7 +40,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Fira Mono', -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Fira Mono', -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 'Fira Mono', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: $darkerGray;
   font-weight: bold;
 
