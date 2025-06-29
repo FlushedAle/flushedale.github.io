@@ -38,9 +38,11 @@ Since we want to know when player enters and exits our platform we need a way to
 When it comes to just detecting presence the standard procedure is to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names in Unity it's called a trigger and in Godot they're called Areas.
 
 This is exactly what we need so we'll proceed with setting it up as follows:
-1. 
+
 That's why we're going to create Area2D as our root node in the scene. This is also the node that we will attach script to later on. First though. Let's rename it to 'Platform' or any other fitting name.
-Then, let's add our sprites as children of the Area2D node. Finally - set sprite reflecting pressed platform to not visible (the little eye icon in scene hierarchy).This allows us to see
+Then, let's add our sprites as children of the Area2D node. Finally - set sprite reflecting pressed platform to not visible (the little eye icon in scene hierarchy). Make sure position of sprites is set to 0 in all dimensions so they're centered under area node.
+![pressed](/images/tutorials/tutorial_platforms/1_1-hierarchy.png)
+
 
 Before we'll jump into coding we'll need to do one more node addition. Since godot seperates idea of Area and it's shape we need to add CollisionShape2D and create the shape that matches our visible platform. Last addition - let's set our area to be 'monitoring' but not 'monitorable' as well as set layers of mask to ones of our player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
 
