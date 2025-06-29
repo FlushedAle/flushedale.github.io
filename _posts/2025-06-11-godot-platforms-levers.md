@@ -35,10 +35,10 @@ Feel free to use mine if you're not into creating sprites for this tutorial:
 ### 1.1 Area and sprites
 We need to know when player enters and exits our platform. Usually to tell if something interesects some other space we use colliders. But colliders will block our movement so what are our options instead?
 
-The standard procedure would be to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names: in Unity it's called a trigger - in Godot - Area.
+The standard procedure would be to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names: in Unity it's called a Trigger - in Godot - **Area**.
 
-That's why we're going to create Area2D as our root node in the scene. Let's rename it to 'Platform' or any other fitting name.
-Then, let's add our sprites as children of the Area2D node. Finally - set 'Pressed' sprite to not visible. You can do it either by 'Eye' icon in Scene tab or CanvasItem -> Visibility category in Inspector. Make sure position of sprites is set to 0 in all dimensions so they're centered under area node.
+Create **Area2D** node in the scene and rename it to 'Platform' or any other fitting name.
+Then, add two **Sprite2D** as children of the **Area2D** node. Finally - set 'Pressed' sprite to not visible. You can do it either by *'Eye' icon* in **Scene** tab or *CanvasItem -> Visibility* category in **Inspector**. Make sure position of sprites is set to 0 in all dimensions so they're centered under area node.
 
 Final result should look as follows:
 ![pressed](/images/tutorials/tutorial_platforms/1_1-hierarchy.png)
