@@ -33,14 +33,14 @@ Feel free to use mine if you're not into creating sprites for this tutorial:
 | *pressed.png* | *unpressed.png* |
 
 ### 1.1 Area and sprites
-Since we want to know when player enters and exits our platform we need a way to detect that. Usually to tell if something interesects some other area we use colliders. But colliders will block our movement so what are our options instead?
+We need to know when player enters and exits our platform. Usually to tell if something interesects some other space we use colliders. But colliders will block our movement so what are our options instead?
 
-When it comes to just detecting presence the standard procedure is to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names in Unity it's called a trigger and in Godot they're called Areas.
+The standard procedure would be to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names: in Unity it's called a trigger - in Godot - Area.
 
-This is exactly what we need so we'll proceed with setting it up as follows:
+That's why we're going to create Area2D as our root node in the scene. Let's rename it to 'Platform' or any other fitting name.
+Then, let's add our sprites as children of the Area2D node. Finally - set 'Pressed' sprite to not visible. You can do it either by 'Eye' icon in Scene tab or CanvasItem -> Visibility category in Inspector. Make sure position of sprites is set to 0 in all dimensions so they're centered under area node.
 
-That's why we're going to create Area2D as our root node in the scene. This is also the node that we will attach script to later on. First though. Let's rename it to 'Platform' or any other fitting name.
-Then, let's add our sprites as children of the Area2D node. Finally - set sprite reflecting pressed platform to not visible (the little eye icon in scene hierarchy). Make sure position of sprites is set to 0 in all dimensions so they're centered under area node.
+Final result should look as follows:
 ![pressed](/images/tutorials/tutorial_platforms/1_1-hierarchy.png)
 
 ### 1.2 Collision Shape
