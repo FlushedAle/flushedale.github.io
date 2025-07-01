@@ -151,7 +151,7 @@ It happens because we're not really checking for more than one body being presen
 
 The method is called 
 
-```gdscript #21
+{% highlight gdscript linenos=true highlight="21" %}
 extends Area2D
 
 var is_pressed = false
@@ -178,4 +178,5 @@ func on_body_exited(body):
 	is_pressed = false
 	pressed_sprite.visible = false
 	unpressed_sprite.visible = true
-```
+
+{% endhighlight %}
