@@ -141,8 +141,7 @@ If you precisely followed the tutorial then you should be able to already test t
 If only player can press platforms and you have only one player in the game - you can skip this part.
 In my case I allow enemies to press platforms too - and while it might not be completely obvious right away that there's anything wrong with the code so let me present a video example.
 
-<video width="1280" height="720" controls>
+<video width="auto" height="auto" controls>
   <source src="../images/tutorials/tutorial_platforms/1_4_edge_case.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-
