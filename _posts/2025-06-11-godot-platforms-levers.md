@@ -145,3 +145,37 @@ In my case I allow enemies to press platforms too - and while it might not be co
   <source src="../images/tutorials/tutorial_platforms/1_4_edge_case.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+As you can probably see even though we have a creature sitting on a platform - it gets unpressed whenever player leaves it.
+It happens because we're not really checking for more than one body being present. There several ways to fix it. You can for example add each entering body to a list and remove them from list when theyre exiting. We'll use a built in **Area2D** method instead that we can find if we read through documentation(!!).
+
+The method is called 
+
+```gdscript #21
+extends Area2D
+
+var is_pressed = false
+
+@onready var pressed_sprite = $Pressed
+@onready var unpressed_sprite = $Unpressed
+
+func _ready() -> void:
+	body_entered.connect(on_body_entered)
+	body_exited.connect(on_body_exited)
+
+func on_body_entered(body):
+	if is_pressed == true:
+		return
+	
+	is_pressed = true
+	pressed_sprite.visible = true
+	unpressed_sprite.visible = false
+	
+func on_body_exited(body):
+	if is_pressed == false <mark>or get_overlapping_bodies()</mark>:
+		return
+	
+	is_pressed = false
+	pressed_sprite.visible = false
+	unpressed_sprite.visible = true
+```
