@@ -11,12 +11,14 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 In this tutorial we'll tackle basics of interactions. After finishing you should be able to create all kinds of 
 
 **You'll learn how to:**
+
 - Create gameplay events when player or objects step into them (we'll use pressure plates as example)
 - Make interactive switches and buttons (objects with state)
 - Give that little bit of polish to make thing looks good while simple
 - Approach problems without resorting to external help (yes, looking at you ChatGPT)
 
 **My assumptions are:**
+
 - You have a character that can walk based on CharacterBody2D node.
 
 
@@ -30,7 +32,8 @@ Feel free to use mine if you're not into creating sprites for this tutorial:
 |:--:|
 | *pressed.png* | *unpressed.png* |
 
-### 1.1 Area and sprites
+### 1.1. Area and sprites
+
 We need to know when player enters and exits our platform. Usually to tell if something interesects some other space we use colliders. But colliders will block our movement so what are our options instead?
 
 The standard procedure would be to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names: in Unity it's called a Trigger - in Godot - **Area** (or specifically **Area2D** in my case).
@@ -41,11 +44,14 @@ Then, add two **Sprite2D** as children of the **Area2D** node. Finally - set 'Pr
 Final result should look as follows:
 ![pressed](/images/tutorials/tutorial_platforms/1_1-hierarchy.png)
 
-### 1.3 Collision layers
+### 1.2. Collision
+
 In order to detect player entering platform we need to make sure collision will be properly detected. There's two important settings to check every time we're setting up new **Area2D**.
 
-#### 1.3.1 Monitoring and Monitorable
+#### 1.2.1. Monitoring and Monitorable
+
 These two settings of **Area2D** are responsible for deciding the direction of collision detection as follows:
+
 - Monitoring - **Area2D** is checking if anything enters and exits
 - Monitorable - other **Area2D**s can detect this **Area2D**
 
@@ -55,13 +61,38 @@ We need to detect player entering the **Area** and don't care about anything els
 
 ![monitorable_settings](/images/tutorials/tutorial_platforms/1_3_1_monitorable.png)
 
-#### 1.3.2 Layers and Mask
-Objects can be present on different layers - usually we want a seperate layers for player collision, hurtboxes etc.
+#### 1.2.2. Layers and Mask
 
-Before doing any scripting, there's some necessary setup left to be done. need one more node addition. Godot seperates idea of Area and it's shape - therefore - we need to add CollisionShape2D as child of 'Platform' node. Set area to be 'monitoring' but not 'monitorable' as well as set Mask to match layer of your player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
+Objects can be present on different layers - usually we want to seperate layers for player collision, hurtboxes et cetera.
+Similarly to **Monitoring** and **Monitorable** - **Mask** and **Layer** settings represent directional information in terms of which collision layers are being used. **Mask** tells us what **Area2D** detects. **Layer** accordingly - at what layers can this **Area2D** be detected.
+
+Considering our goal - we want to leave **Layer** empty and set **Mask** to layer on which player is present. I additionally will set two more layers - for props and for enemies resulting in setup as below.
+
+![layers](/images/tutorials/tutorial_platforms/1_3_2_layers.png)
 
 
-### 1.4 Basic script
+### 1.3. Collision Shape
+**Area2D** itself doesn't describe at what region it is detecting bodies entering. This is job of **CollisionShape** or more precisely in our case - **CollisionShape2D**. This is mandatory node that needs to be added as child of **Area2D** (if we wish to - we can add more than one). Then we'll need to set it up by assigning a new **RectangleShape** (or if you're not using my sprites - any other fitting shape).
+
+You can then either drag the corners of the shape to cover the sprite describe it parameters.
+Either way you should end up with setup resembling image below.
+
+![collisionshape_setup](/images/tutorials/tutorial_platforms/1_3_3_collisionshape_setup.png)
+
+With hierarchy looking like this.
+
+![collision_shape_hierarchy](/images/tutorials/tutorial_platforms/1_3_3_hierarchy.png)
+
+Setup is finished. Now let's move to code.
+
+### 1.4. Script
+
+**Area2D** natively provides us with some tools to be able to detect collisions so we'll be keen to use them.
+As described in introduction - we assume our player is some kind of body (most likely **CharacterBody2D**). This means we're interested in body detection specifically. Luckily quick peek into **Area2D** documentation (I really recommend reading documentation!) shows us we have two signals to our disposal that do just that - "body_entered" and "body_exited".
+
+In case you haven't encountered signals yet - think of them as someone giving you a phone call when a specified thing - like player entering the platform - happens. In order to use signals you need to 'connect' it to some function that will describe what will happen after signal has fired.
+
+Enough of introduction let's have a quick look at basic code to make platform work.
 
 ```gdscript
 #pressure_plate.gd
@@ -82,6 +113,7 @@ func on_body_entered(body):
 	
 	pressed_sprite.visible = true
 	unpressed_sprite.visible = false
+	is_pressed = true
 	
 func on_body_exited(body):
 	if is_pressed == false:
@@ -89,89 +121,21 @@ func on_body_exited(body):
 	
 	pressed_sprite = false
 	unpressed_sprite = true
-
+	is_pressed = false
 ```
 
+Here we have few things that might need explanation.
 
-Since we know we need to react on both entering and exiting we'll write functions to handle both situations.
+First of all @onready var 'xxx' = $'yyy' means platform will look for child named 'yyy' and assign it to this variable. In our case we're assigning sprites so make sure your name in script matches with the hierarchy.
 
+Then _ready() functions is being called by engine at the start of our platform existance and inside of it - we connect to existing signals. Inside parenthesis we give name of our own functions to be executed - on_body_entered and on_body_exited accordingly. These functions take one additional argument - body.
 
+This information is also present in **Area2D** documentation.
 
+Functions themselves are pretty simple. We take variable - is_pressed - that tracks current platform state and check if state does need to be changed. For example if platform is already pushed we don't want to execute rest of the function so we return(exit) early. Then if state is actually changed we update visibility of our **Sprite2D** images switching between pressed and unpressed sprite.
 
-![](/images/reverie-demo.png)
+If you precisely followed the tutorial then you should be able to already test the platform! Start the scene and try to walk inside of **Area2D**. If nothing happens - make sure your name match and that player is an actual body with proper layer being set.
 
-## 2. Features overview
-
-- Command-line free fork-first workflow, using GitHub.com to create, customize and post to your blog
-- Fully responsive and mobile optimized base theme
-- Sass/Coffeescript support using Jekyll 2.0
-- Free hosting on your GitHub Pages user site
-- All the SEO goodies comes in-built
-- Markdown blogging
-- Syntax highlighting using Pygments
-    - [Dracula syntax theme](https://draculatheme.com/) included
-- Disqus commenting
-- Google Analytics integration
-- Fuzzy search across blog posts
-- Pagination of posts works out-of-the-box.
-- Categorize posts out-of-the box
-- RSS Feed
-- In-built sitemap
-
-<div style="text-align: center;">
- <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7D6KJY&placement=wwwamitmerchantcom" id="_carbonads_js"></script>
-</div>
-
-## 3. Using Reverie on GitHub Pages
-
-### 3.1. Step 1) Fork Reverie to your User Repository
-
-Fork [this repository](https://github.com/amitmerchant1990/reverie), then rename the repository to `yourgithubusername.github.io`.
-
-Alternatively, you can use [Use this template](https://github.com/amitmerchant1990/reverie/generate) button if you want to create a repository with a clean commit history which will use Reverie as a template.
-
-Your Jekyll blog will often be viewable immediately at <https://yourgithubusername.github.io> (if it's not, you can often force it to build by completing step 2)
-
-### 3.2. Step 2) Customize and view your site
-
-Enter your site name, description, avatar and many other options by editing the `_config.yml` file. You can easily turn on Google Analytics tracking, Disqus commenting and social icons here.
-
-Making a change to `_config.yml` (or any file in your repository) will force GitHub Pages to rebuild your site with jekyll. Your rebuilt site will be viewable a few seconds later at <https://yourgithubusername.github.io> - if not, give it ten minutes as GitHub suggests and it'll appear soon.
-
-### 3.3. Step 3) Publish your first blog post
-
-Create a new file called `/_posts/2019-2-13-Hello-World.md` to publish your first blog post. That's all you need to do to publish your first blog post! This [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) might come in handy while writing the posts.
-
-> You can add additional posts in the browser on GitHub.com too! Just hit the <kbd>Create new file</kbd> button in `/_posts/` to create new content. Just make sure to include the [front-matter](http://jekyllrb.com/docs/frontmatter/) block at the top of each new blog post and make sure the post's filename is in this format: year-month-day-title.md
-
-## 4. Using Categories in Reverie
-
-You can categorize your content based on `categories` in Reverie. For this, you just need to add `categories` in front matter like below:
-
-For adding single category:
-
-```md
-categories: JavaScript
-```
-
-For adding multiple categories:
-
-```md
-categories: [PHP, Laravel]
-```
-
-The contegorized content can be shown over this URL: <https://yourgithubusername.github.io/categories/>
-
-## 5. RSS
-
-The generated [RSS feed](https://en.wikipedia.org/wiki/RSS) of your blog can be found at <https://yourgithubusername.github.io/feed>. You can see the example RSS feed over [here](https://www.amitmerchant.com/reverie/feed).
-
-## 6. Sitemap
-
-The generated sitemap of your blog can be found at <https://yourgithubusername.github.io/sitemap>. You can see the example sitemap feed over [here](https://www.amitmerchant.com/reverie/sitemap).
-
-## 7. License
-
-MIT
+1.5 Edge cases
 
 
