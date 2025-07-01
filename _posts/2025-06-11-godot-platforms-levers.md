@@ -128,7 +128,7 @@ Here we have few things that might need explanation.
 
 First of all @onready var 'xxx' = $'yyy' means platform will look for child named 'yyy' and assign it to this variable. In our case we're assigning sprites so make sure your name in script matches with the hierarchy.
 
-Then _ready() functions is being called by engine at the start of our platform existance and inside of it - we connect to existing signals. Inside parenthesis we give name of our own functions to be executed - on_body_entered and on_body_exited accordingly. These functions take one additional argument - body.
+Then _ready() function is being called by engine at the start of our platform existance and inside of it - we connect to existing signals. Inside parenthesis we give name of our own functions to be executed - on_body_entered and on_body_exited accordingly. These functions take one additional argument - body.
 
 This information is also present in **Area2D** documentation.
 
@@ -136,6 +136,13 @@ Functions themselves are pretty simple. We take variable - is_pressed - that tra
 
 If you precisely followed the tutorial then you should be able to already test the platform! Start the scene and try to walk inside of **Area2D**. If nothing happens - make sure your name match and that player is an actual body with proper layer being set.
 
-1.5 Edge cases
+### 1.5. Edge cases
 
+If only player can press platforms and you have only one player in the game - you can skip this part.
+In my case I allow enemies to press platforms too - and while it might not be completely obvious right away that there's anything wrong with the code so let me present a video example.
+
+<video width="1280" height="720" controls>
+  <source src="../images/tutorials/tutorial_platforms/1_4_edge_case.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
