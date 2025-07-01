@@ -172,7 +172,7 @@ func on_body_entered(body):
 	unpressed_sprite.visible = false
 	
 func on_body_exited(body):
-	if is_pressed == false <mark>or get_overlapping_bodies()</mark>:
+	if is_pressed == false or get_overlapping_bodies():
 		return
 	
 	is_pressed = false
