@@ -19,56 +19,7 @@ code {
     font-size: 16px;
 }
 
-/* Make the whole figure background dark */
-figure.highlight {
-  background-color: #282828 !important;
-  color: #ebdbb2;
-  padding: 10px;
-  border-radius: 6px;
-  overflow-x: auto;
-}
-
-/* Remove white background and padding from inner <pre> in gutter and code */
-figure.highlight table.rouge-table pre {
-  background: transparent !important;
-  margin: 0;
-  padding: 0;
-  border: none;
-  font-size: 16px; /* match your code font size */
-  font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace;
-  color: inherit;
-  overflow: visible;
-}
-
-/* Style line numbers column */
-figure.highlight table.rouge-table td.gutter {
-  background-color: #3c3836;
-  padding-right: 10px;
-  text-align: right;
-  user-select: none;
-  vertical-align: top;
-  font-size: 16px;
-  color: #928374;
-}
-
-/* Highlight the specific line */
-.highlight .hll {
-  background-color: #504945 !important;
-  border-left: 3px solid #fabd2f;
-}
-
-/* Style code lines */
-figure.highlight table.rouge-table td.code {
-  padding-left: 10px;
-  white-space: pre;
-}
-
-/* Fix extra empty <pre class="lineno"> inside gutter */
-figure.highlight table.rouge-table td.gutter > pre.lineno {
-  display: none;
-}
-
-
+.highlight .hll { background-color: #3c3836; }
 .highlight { background: #282828; color: #ebdbb2; }
 
 .highlight .c,
