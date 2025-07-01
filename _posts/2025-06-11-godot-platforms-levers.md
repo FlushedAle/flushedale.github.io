@@ -55,11 +55,13 @@ We need to detect player entering the **Area** and don't care about anything els
 
 ![monitorable_settings](/images/tutorials/tutorial_platforms/1_3_1_monitorable.png)
 
+#### 1.3.2 Layers and Mask
+Objects can be present on different layers - usually we want a seperate layers for player collision, hurtboxes etc.
 
 Before doing any scripting, there's some necessary setup left to be done. need one more node addition. Godot seperates idea of Area and it's shape - therefore - we need to add CollisionShape2D as child of 'Platform' node. Set area to be 'monitoring' but not 'monitorable' as well as set Mask to match layer of your player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
 
 
-### 1.3 Basic script
+### 1.4 Basic script
 
 ```gdscript
 #pressure_plate.gd
