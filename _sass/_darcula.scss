@@ -20,9 +20,16 @@ code {
 }
 
 figure.highlight {
-  background-color: transparent; /* or #282828 to match your theme */
-  margin: 1em 0;
+  background-color: #282828; /* match your dark background */
+  color: #ebdbb2;
+  padding: 7px 10px;
   border-radius: 5px;
+  overflow: auto;
+}
+
+/* Optional: remove white background on table rows inside code */
+figure.highlight table {
+  background-color: transparent;
 }
 
 .highlight .hll {
