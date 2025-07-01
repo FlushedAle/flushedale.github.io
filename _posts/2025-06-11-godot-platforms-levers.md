@@ -8,7 +8,7 @@ categories: [Godot, Gamedev, Coding, Programming, 2D]
 [comment]: <> (* TOC)
 [comment]: <> ({:toc} this is how you get table of contents)
 
-In this tutorial we'll tackle the fundamental interactions to give you basic tools to
+In this tutorial we'll tackle basics of interactions. After finishing you should be able to create all kinds of 
 
 **You'll learn how to:**
 - Create gameplay events when player or objects step into them (we'll use pressure plates as example)
@@ -26,8 +26,6 @@ I like when I can see what's going on so we'll start by creating sprites for pre
 
 Feel free to use mine if you're not into creating sprites for this tutorial:
 
-
-
 | ![pressed](/images/tutorials/tutorial_platforms/platform_pressed.png){:height="256px" width="256px"} | ![smiley](/images/tutorials/tutorial_platforms/platform_unpressed.png){:height="256px" width="256px"}|
 |:--:|
 | *pressed.png* | *unpressed.png* |
@@ -35,7 +33,7 @@ Feel free to use mine if you're not into creating sprites for this tutorial:
 ### 1.1 Area and sprites
 We need to know when player enters and exits our platform. Usually to tell if something interesects some other space we use colliders. But colliders will block our movement so what are our options instead?
 
-The standard procedure would be to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names: in Unity it's called a Trigger - in Godot - **Area**.
+The standard procedure would be to use some volume or shape that acts as collider but without doing actual collisions. They can be called various names: in Unity it's called a Trigger - in Godot - **Area** (or specifically **Area2D** in my case).
 
 Create **Area2D** node in the scene and rename it to 'Platform' or any other fitting name.
 Then, add two **Sprite2D** as children of the **Area2D** node. Finally - set 'Pressed' sprite to not visible. You can do it either by *'Eye' icon* in **Scene** tab or *CanvasItem -> Visibility* category in **Inspector**. Make sure position of sprites is set to 0 in all dimensions so they're centered under area node.
@@ -43,39 +41,52 @@ Then, add two **Sprite2D** as children of the **Area2D** node. Finally - set 'Pr
 Final result should look as follows:
 ![pressed](/images/tutorials/tutorial_platforms/1_1-hierarchy.png)
 
-### 1.2 Collision Shape
+### 1.3 Collision layers
+In order to detect player entering platform we need to make sure collision will be properly detected. There's two important settings to check every time we're setting up new **Area2D**.
 
-Before we'll jump into coding we'll need to do one more node addition. Since godot seperates idea of Area and it's shape we need to add CollisionShape2D and create the shape that matches our visible platform. Last addition - let's set our area to be 'monitoring' but not 'monitorable' as well as set layers of mask to ones of our player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
+#### 1.3.1 Monitoring and Monitorable
+These two settings of **Area2D** are responsible for deciding the direction of collision detection as follows:
+- Monitoring - **Area2D** is checking if anything enters and exits
+- Monitorable - other **Area2D**s can detect this **Area2D**
+
+Double click 'Platform' node of type **Area2D** and check your **Inspector** tab.
+
+We need to detect player entering the **Area** and don't care about anything else detecting it. Therefore - set **Monitoring** to **True** and **Monitorable** to **False** as below.
+
+![monitorable_settings](/images/tutorials/tutorial_platforms/1_3_1_monitorable.png)
 
 
+Before doing any scripting, there's some necessary setup left to be done. need one more node addition. Godot seperates idea of Area and it's shape - therefore - we need to add CollisionShape2D as child of 'Platform' node. Set area to be 'monitoring' but not 'monitorable' as well as set Mask to match layer of your player and everything else we want to be able to interact with platform - in my case these are layers 1, 2 and 3 for Props, Player and Enemies.
+
+
+### 1.3 Basic script
 
 ```gdscript
+#pressure_plate.gd
 extends Area2D
 
-signal on_triggered
-signal on_released
+var is_pressed = false
 
-var is_pushed = false
+@onready var pressed_sprite = $Pressed
+@onready var unpressed_sprite = $Unpressed
 
-func _ready():
+func _ready() -> void:
 	body_entered.connect(on_body_entered)
 	body_exited.connect(on_body_exited)
 
-func on_body_entered(_body):
-	if is_pushed == true:
+func on_body_entered(body):
+	if is_pressed == true:
 		return
 	
-	is_pushed = true
-	on_triggered.emit()
-
-func on_body_exited(_body):
-	if is_pushed == false or has_overlapping_bodies():
+	pressed_sprite.visible = true
+	unpressed_sprite.visible = false
+	
+func on_body_exited(body):
+	if is_pressed == false:
 		return
-
-	is_pushed = false
-    on_released.emit()
-
-
+	
+	pressed_sprite = false
+	unpressed_sprite = true
 
 ```
 
