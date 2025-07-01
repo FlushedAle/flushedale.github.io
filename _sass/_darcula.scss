@@ -19,6 +19,12 @@ code {
     font-size: 16px;
 }
 
+figure.highlight {
+  background-color: transparent; /* or #282828 to match your theme */
+  margin: 1em 0;
+  border-radius: 5px;
+}
+
 .highlight .hll {
   background-color: #504945;
 }
