@@ -151,7 +151,7 @@ It happens because we're not really checking for more than one body being presen
 
 The method is called 
 
-{% highlight gdscript linenos mark_lines="21" %}
+{% highlight gdscript mark_lines="21" %}
 extends Area2D
 
 var is_pressed = false
