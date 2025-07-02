@@ -116,7 +116,7 @@ func on_body_entered(body):
 	is_pressed = true
 	
 func on_body_exited(body):
-	if is_pressed == false:
+<mark>	if is_pressed == false: </mark>
 		return
 	
 	pressed_sprite = false
