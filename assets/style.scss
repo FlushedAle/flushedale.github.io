@@ -127,6 +127,10 @@ table tr td :last-child {
 	margin-bottom: 0;
 }
 
+code tr td{
+  border: transparent;
+}
+
 /*.detailed .entry p:first-of-type:first-letter {
     float: left;
     margin: 0.13em 0.05em 0 -0.05em;
