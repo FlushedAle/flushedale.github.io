@@ -116,7 +116,7 @@ func on_body_entered(body):
 	is_pressed = true
 	
 func on_body_exited(body):
-<mark>	if is_pressed == false: </mark>
+	if is_pressed == false:
 		return
 	
 	pressed_sprite = false
@@ -149,27 +149,12 @@ In my case I allow enemies to press platforms too - and while it might not be co
 As you can probably see even though we have a creature sitting on a platform - it gets unpressed whenever player leaves it.
 It happens because we're not really checking for more than one body being present. There several ways to fix it. You can for example add each entering body to a list and remove them from list when theyre exiting. We'll use a built in **Area2D** method instead that we can find if we read through documentation(!!).
 
-The method is called 
+The method is called get_overlapping_bodies and as result returns **True** or **False** depending if any body is present within platform.
 
-{% highlight gdscript mark_lines="21" %}
-extends Area2D
+This means our updated on_body_exited will look like this:
 
-var is_pressed = false
-
-@onready var pressed_sprite = $Pressed
-@onready var unpressed_sprite = $Unpressed
-
-func _ready() -> void:
-	body_entered.connect(on_body_entered)
-	body_exited.connect(on_body_exited)
-
-func on_body_entered(body):
-	if is_pressed == true:
-		return
-	
-	is_pressed = true
-	pressed_sprite.visible = true
-	unpressed_sprite.visible = false
+```gdscript
+(...)
 	
 func on_body_exited(body):
 	if is_pressed == false or get_overlapping_bodies():
@@ -179,4 +164,8 @@ func on_body_exited(body):
 	pressed_sprite.visible = false
 	unpressed_sprite.visible = true
 
-{% endhighlight %}
+```
+
+This solves an issue of multiple actors using the same platform.
+
+### 1.6 Interactions
